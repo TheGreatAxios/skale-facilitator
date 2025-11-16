@@ -50,7 +50,8 @@
 	// Then add the returned ID to the "id" field below
 	"kv_namespaces": [
 		{
-			"binding": "NONCES"
+			"binding": "NONCES",
+			"id": "fb99d13e2d4d45acbedd49d3e0ad2382"
 			// "id": "your-kv-namespace-id-here", // Add this after creating the namespace
 			// "preview_id": "your-preview-namespace-id-here" // Optional: for preview environments
 		},

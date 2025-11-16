@@ -508,6 +508,7 @@ app.post('/verify', async (c) => {
       const rpcUrl = getRpcUrl(paymentPayload.network);
       const provider = new ethers.JsonRpcProvider(rpcUrl);
       provider._getConnection().timeout = 5000;
+      provider.pollingInterval = 250;
       
       const contract = new ethers.Contract(
         paymentRequirements.asset,
