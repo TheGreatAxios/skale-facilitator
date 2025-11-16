@@ -1,0 +1,70 @@
+/**
+ * For more details on how to configure Wrangler, refer to:
+ * https://developers.cloudflare.com/workers/wrangler/configuration/
+ */
+/**
+ * For more details on how to configure Wrangler, refer to:
+ * https://developers.cloudflare.com/workers/wrangler/configuration/
+ */
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "skale-facilitator",
+	"main": "src/index.ts",
+	"compatibility_date": "2025-10-24",
+	"observability": {
+		"enabled": true
+	},
+	/**
+	 * Smart Placement
+	 * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
+	 */
+	// "placement": { "mode": "smart" }
+	/**
+	 * Bindings
+	 * Bindings allow your Worker to interact with resources on the Cloudflare Developer Platform, including
+	 * databases, object storage, AI inference, real-time communication and more.
+	 * https://developers.cloudflare.com/workers/runtime-apis/bindings/
+	 */
+	/**
+	 * Environment Variables
+	 * https://developers.cloudflare.com/workers/wrangler/configuration/#environment-variables
+	 */
+	// "vars": { "MY_VARIABLE": "production_value" }
+	/**
+	 * Note: Use secrets to store sensitive data.
+	 * https://developers.cloudflare.com/workers/configuration/secrets/
+	 */
+	/**
+	 * Static Assets
+	 * https://developers.cloudflare.com/workers/static-assets/binding/
+	 */
+	// "assets": { "directory": "./public/", "binding": "ASSETS" }
+	/**
+	 * Service Bindings (communicate between multiple Workers)
+	 * https://developers.cloudflare.com/workers/wrangler/configuration/#service-bindings
+	 */
+	// "services": [{ "binding": "MY_SERVICE", "service": "my-service" }]
+	// create your kv binding and add it here
+	// For local development, wrangler will create a local namespace automatically
+	// For production, create the namespace with: wrangler kv:namespace create "NONCES"
+	// Then add the returned ID to the "id" field below
+	"kv_namespaces": [
+		{
+			"binding": "NONCES"
+			// "id": "your-kv-namespace-id-here", // Add this after creating the namespace
+			// "preview_id": "your-preview-namespace-id-here" // Optional: for preview environments
+		},
+		{
+			"binding": "SKALENONCES",
+			"id": "4533e1511fd643a2963161b58183978d"
+		}
+	],
+	"vars": {
+		// Base Mainnet RPC (you can use public or get a free one from Alchemy/QuickNode)
+		"RPC_URL_BASE": "https://mainnet.base.org",
+		// Base Sepolia Testnet RPC (public endpoint)
+		"RPC_URL_BASE_SEPOLIA": "https://sepolia.base.org",
+		// SKALE Base Sepolia Testnet RPC
+		"RPC_URL_SKALE_BASE_SEPOLIA": "https://base-sepolia-testnet.skalenodes.com/v1/jubilant-horrible-ancha"
+	}
+}
